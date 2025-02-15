@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listings for <%= destination %></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Include Layout (Make sure the boilerplate.ejs exists in the correct path) -->
+    <% layout("./listings/layouts/boilerplate.ejs") %>
+<style>
+.btn-primary{
+    background-color: #fe424d;
+    border-radius: 2rem;
+}
+</style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Listings Section -->
+        <h2 class="text-center mt-4">Listings in <%= destination %></h2>
+
+        <div class="row">
+            <!-- Loop through all listings and display them -->
+            <% listings.forEach(function(listing) { %>
+                <div class="col-12 col-md-6 col-lg-4 listing-card">
+                    <div class="card">
+                        <img src="<%= listing.image.url %>" class="card-img-top" alt="listing_image" style="height: 20rem;"/>
+                        <div class="card-body">
+                            <h5 class="card-title"><%= listing.title %></h5>
+                            <p class="card-text"><strong>Location:</strong> <%= listing.location %></p>
+                            <p class="card-text"><strong>Price:</strong>&#8377;<%= listing.price %> per night</p>
+                            <p class="card-text"><strong>Owner:</strong> <%= listing.Owner.username %></p>
+                            <a href="/listings/<%= listing._id %>" class="btn btn-primary">View Listing</a>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+<style>
+  .btn-search{
+    background-color: #fe424d;
+    color: white;
+    border-radius: 25px;
+    padding: 0 1 rem 0 1 rem;
+  }
+  .btn-search:hover{
+    background-color: #fe424d;
+    color: white;
+  }
+.btn-search i {
+  display: inline;
+  margin-right: 0.5rem;
+}
+.dropdown-toggle {
+  border-radius: 25px;
+  padding: 0.5rem 3rem 0.5rem  3rem;
+  color: black;
+  background-color: white;
+  margin-right: 5px;
+}
+.dropdown-toggle:hover{
+  background-color:none;
+}
+</style>
+
+
+<nav class="navbar navbar-expand-md navbar-light bg-light border-bottom sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/"><i class="fa-regular fa-compass"></i></a>
+      <button class="navbar-toggler" 
+      type="button"
+       data-bs-toggle="collapse"
+        data-bs-target="#navbarNavAltMarkup">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <!-- <a class="nav-link " href="/">Home</a> -->
+          <a class="nav-link" href="/listings"><b>Explore</b></a>
+        </div>
+
+        <div class="navbar-nav ms-auto">
+          <!-- <form class="d-flex" role="search">
+            <input class="form-control me-2 search-input dropdown " type="search" placeholder="Search destinations">
+            <button class="btn btn-search" type="submit"><i class="fa fa-search"></i>Search</button>
+          </form> -->
+          <form action="/search" method="GET">
+            <div class="dropdown">
+              <button
+                class="btn btn-secondary dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Search destinations
+              </button>
+              <input
+                type="hidden"
+                name="destination"
+                id="selectedDestination"
+              />
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" data-value="United States">United States</a></li>
+                <li><a class="dropdown-item" data-value="Italy">Italy</a></li>
+                <li><a class="dropdown-item" data-value="Mexico">Mexico</a></li>
+                <li><a class="dropdown-item" data-value="Switzerland">Switzerland</a></li>
+                <li><a class="dropdown-item" data-value="Tanzania">Tanzania</a></li>
+                <li><a class="dropdown-item" data-value="Indonesia">Indonesia</a></li>
+                <li><a class="dropdown-item" data-value="Canada">Canada</a></li>
+                <li><a class="dropdown-item" data-value="Thailand">Thailand</a></li>
+                <li><a class="dropdown-item" data-value="India">India</a></li>
+              </ul>
+              <button class="btn btn-search" type="submit">
+                <i class="fa fa-search"></i>Search
+              </button>
+            </div>
+          </form>
+          
+        </div>
+
+
+
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link" href="/listings/new"><b>Add home on wanderlust</b></a>
+          <% if(!currUser) { %>
+          <a class="nav-link " href="/signup"><b>Sign up</b></a>
+          <a class="nav-link" href="/login"><b>Log in </b></a>
+         <% } %>
+
+         <% if(currUser) {%>
+          <a class="nav-link" href="/logout"><b>Log out </b></a>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <script>
+    document.querySelectorAll(".dropdown-item").forEach((item) => {
+  item.addEventListener("click", (event) => {
+    event.preventDefault(); // Prevent default link behavior
+    const selectedValue = event.target.getAttribute("data-value");
+
+    // Set the selected value in the hidden input
+    document.getElementById("selectedDestination").value = selectedValue;
+
+    // Update the dropdown button text to show the selected option
+    document.querySelector(".dropdown-toggle").textContent = selectedValue;
+  });
+});
+  </script>
