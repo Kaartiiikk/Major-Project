@@ -3,7 +3,7 @@ const initData = require("./data");
 const Listing = require("../models/listing") ;
 
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+const MONGO_URL = "hello";
 main()
 .then(()=>{
     console.log("connected to db");
@@ -13,6 +13,7 @@ main()
 });
 
 async function main() {
+    console.log(MONGO_URL);
 await mongoose.connect(MONGO_URL);
 }
 
