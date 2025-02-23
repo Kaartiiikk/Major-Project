@@ -17,6 +17,7 @@ const reviewsRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
 const dbUrl = process.env.ATLASDB_URL;
+const middleware = require("./middleware");
 
 
 main()
@@ -89,7 +90,7 @@ app.use((req,res,next)=>{
 // })
 
 
-
+app.use(middleware.redirectListing)
 app.use("/listings",listingRouter);
 app.use("/listings/:id/reviews",reviewsRouter);
 app.use("/",userRouter);
